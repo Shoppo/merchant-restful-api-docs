@@ -8,7 +8,8 @@ Merchant API是Shoppo为商户、ERP的API对接提供的API，对一下功能�
 
 ## 基本设置
 
-在开始之前，请跟联系Shoppo的对接人员开通API服务。API服务开通后，您可以在[开发者页面](http://localhost:8080/merchant/developer/profile)获取到商户ID以及API Key。
+在开始之前，请跟联系Shoppo的对接人员开通API服务。API服务开通后，您可以在[开发者页面](https://merchant.shoppo.com/merchant/developer/profile)获取到商户ID以及API Key。
+测试环境中，请使用https://merchant-dev.shoppo.com/developer/profile
 
 您可以使用下面的命令行指令来测试API Key的有效性：
 
