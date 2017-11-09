@@ -492,7 +492,7 @@ https://api-sandbox.shoppo.com/api/merchant/order_items/ship/
 
 参数：
 - `refund_shipping (Boolean!)`: 是否退运费。注意，一般情况下，未发货的订单一定要求退运费。
-- `refund_reason_type (String!)`：退款原因。“OUT_OF_STOCK”还是“BAD_SHIPPING_ADDRESS”还是“AGREEMENT_WITH_USER”。
+- `refund_reason_type (String!)`：退款原因。`OUT_OF_STOCK`还是`BAD_SHIPPING_ADDRESS`还是`AGREEMENT_WITH_USER`。
 
 返回参数：退款的order item。
 
