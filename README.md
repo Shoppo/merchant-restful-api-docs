@@ -87,6 +87,8 @@ $ curl https://api-sandbox.shoppo.com/api/merchant/health_check --header "mercha
 参数：
 - `bookmark (string?)`: 分页是使用的起始标示，相当于offset。
 - `limit (int?)`: 返回的order最大数量，默认20。必须为一个0到200之间的整数。
+- `time_created_from (timestamp?)`: 订单创建时间范围起点，类型为十位的时间戳
+- `time_created_to (timestamp?)`: 订单创建时间范围终点，类型为十位的时间戳
 
 返回参数：TODO
 - `total (int!)`: 总订单数；
@@ -626,7 +628,7 @@ https://api-sandbox.shoppo.com/api/merchant/order_item/KvL2Lb12jnMTpw/refund
 | price | float! | 价格，美元 |
 | shipping_price | float! | 运费价格，美元 |
 | msrp | float! | [制造商建议售价](https://en.wikipedia.org/wiki/List_price) |
-| shipping_time | String! | 送货时间（天），格式为`<最少天数>-<最多天数>` | 
+| shipping_time | String! | 送货时间（天），格式为`<最少天数>-<最多天数>` |
 | upc | String! | [商品统一标示号](https://en.wikipedia.org/wiki/Universal_Product_Code)，用于推荐。也就是商品标签上的扫描码 |
 | enabled | Boolean! | 是否上架 |
 | length | String! | 长，纯数字则默认inch |
@@ -635,5 +637,3 @@ https://api-sandbox.shoppo.com/api/merchant/order_item/KvL2Lb12jnMTpw/refund
 | weight | String! | 高，纯数字则默认单位磅 |
 | hs_code | String! | 海关编码，用于报关 |
 | material | String! | 材质 |
-
-
