@@ -1,37 +1,38 @@
 # Shoppo Merchant API
 
-Merchant API是Shoppo为商户、ERP的API对接提供的API，对一下功能提供支持：
-- 获取、更新（TODO）商户信息；
-- 获取、更新（TODO）商品信息；
-- 获取、更新订单信息；
-- 对接Shoppo物流（TODO）；
+Merchant API是 `Shoppo` 为商户、ERP的 `API` 对接提供的API，对一下功能提供支持：
+
+- [x] 获取、更新（TODO）商户信息；
+- [x] 获取、更新（TODO）商品信息；
+- [x] 获取、更新订单信息；
+- [ ] 对接Shoppo物流（TODO）；
 
 ## 基本设置
 
-在开始之前，请跟联系Shoppo的对接人员开通API服务。API服务开通后，您可以在[开发者页面](https://merchant.shoppo.com/merchant/developer/profile)获取到商户ID以及API Key。
-- 如果API Key没有刷新，请尝试登出后再登录
-- 测试环境中，请使用https://merchant-dev.shoppo.com/developer/profile
+在开始之前，请跟联系 `Shoppo` 的对接人员开通 `API` 服务。 `API` 服务开通后，您可以在 [开发者页面](https://merchant.shoppo.com/merchant/developer/profile) 获取到 `商户ID` 以及 `API Key`
+- 如果 `API Key` 没有刷新，请尝试注销重新登录
+- 测试环境中，请使用 `https://merchant-dev.shoppo.com/developer/profile`
 
-您可以使用下面的命令行指令来测试API Key的有效性：
+您可以使用下面的命令行指令来测试 `API Key` 的有效性：
 
 ```bash
 $ curl https://api.shoppo.com/api/merchant/health_check --header "merchantid: <商户ID>" --header "apikey: <API Key>"
 ```
 
-有效的API Key将会收到如下response：
+有效的 `API Key` 将会收到如下 `response`：
 
 ```
 Go <商户名称>! Go Shoppo!
 ```
 
 此外，请注意以下几点：
-- 所有的数据均适用`UTF-8`编码；
-- 请发送HTTPS请求，我们不保证对HTTP协议的支持；
-- 每个请求的header都必须包括`merchantid`以及`apiKey`；
+- 所有的数据均适用 `UTF-8` 编码；
+- 请发送 `HTTPS` 请求，我们不保证对 `HTTP` 协议的支持；
+- 每个请求的 `header` 都必须包括 `merchantid` 以及 `apiKey`；
 
 ### 错误信息
 
-所有成功的API请求都将会返回一个`statusCode = 200`的response。错误的请求将会以非200的代码返回，一般包含一个错误信息。比如：
+所有成功的 `API` 请求都将会返回一个 `statusCode = 200` 的 `response`。错误的请求将会以非 `200` 的代码返回，一般包含一个错误信息。比如：
 
 ```bash
 $ curl https://api-sandbox.shoppo.com/api/merchant/health_check --header "merchantid: <merchant id>" --header "apikey: wrong-key" -i
@@ -50,7 +51,7 @@ Connection: keep-alive
 
 ### 测试环境
 
-在开发测试阶段，您可能不希望一些测试的请求影响到生产数据。此时请要求对接人员提供一个测试用的商户ID以及API Key，并且将所有的测试请求发送到https://api-sandbox.shoppo.com/。比如
+在开发测试阶段，您可能不希望一些测试的请求影响到生产数据。此时请要求对接人员提供一个测试用的 `商户ID` 以及 `API Key`，并且将所有的测试请求发送到 `https://api-sandbox.shoppo.com/`。比如
 
 ```bash
 $ curl https://api-sandbox.shoppo.com/api/merchant/health_check --header "merchantid: <商户ID>" --header "apikey: <API Key>"
@@ -70,7 +71,7 @@ $ curl https://api-sandbox.shoppo.com/api/merchant/health_check --header "mercha
 - `merchant_name (string!)`: 商户名
 - `status (string!)`: `VALID`, `PENDING_APPROVE`, `SUSPEND`或者`INVALID`。其中只有`VALID`是在经营的商户状态。
 
-参考Response：
+参考 `Response`：
 ```json
 {
   "data": {
@@ -87,8 +88,8 @@ $ curl https://api-sandbox.shoppo.com/api/merchant/health_check --header "mercha
 参数：
 - `bookmark (string?)`: 分页是使用的起始标示，相当于offset。
 - `limit (int?)`: 返回的order最大数量，默认20。必须为一个0到200之间的整数。
-- `time_created_from (timestamp?)`: 订单创建时间范围起点，类型为十位的时间戳
-- `time_created_to (timestamp?)`: 订单创建时间范围终点，类型为十位的时间戳
+- `time_created_from (timestamp?)`: 订单创建时间范围起点，类型为十位的UTC时间戳
+- `time_created_to (timestamp?)`: 订单创建时间范围终点，类型为十位的UTC时间戳
 
 返回参数：TODO
 - `total (int!)`: 总订单数；
@@ -460,7 +461,7 @@ https://api-sandbox.shoppo.com/api/merchant/order_items/ship/
 
 ```json
 {
-	"order_item_list": ["KvL2Lb12jnMTpw"]
+	"order_item_ids": ["KvL2Lb12jnMTpw"]
 }
 ```
 
@@ -637,3 +638,5 @@ https://api-sandbox.shoppo.com/api/merchant/order_item/KvL2Lb12jnMTpw/refund
 | weight | String! | 高，纯数字则默认单位磅 |
 | hs_code | String! | 海关编码，用于报关 |
 | material | String! | 材质 |
+
+
