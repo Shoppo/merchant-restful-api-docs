@@ -535,6 +535,73 @@ https://api-sandbox.shoppo.com/api/merchant/order_item/KvL2Lb12jnMTpw/refund
 }
 ```
 
+#### `/api/merchant/supported-couriers/` 获取支持的物流方式信息
+获取当前系统中支持的物流方式以及对应的说明。其中，`code` 字段为 `API` 接受的格式，`name` 为对应方式的名称/说明。
+
+参考Request:
+```
+curl -X GET -H 'merchantid:<MerchantID>' -H 'apikey:<ApiKey>' -H 'mimetype:Application/json' 'https://api.shoppo.com/api/merchant/supported-couriers/'
+```
+
+参考Response:
+```
+{
+  "data": [
+    {
+      "code": "sunyou",
+      "name": "Sunyou / \u987a\u53cb"
+    },
+    {
+      "code": "amazon-fba-us",
+      "name": "Amazon FBA USA"
+    },
+    {
+      "code": "ppbyb",
+      "name": "PayPal Package"
+    },
+    {
+      "code": "4px",
+      "name": "4PX"
+    },
+    {
+      "code": "usps",
+      "name": "USPS"
+    },
+    {
+      "code": "yanwen",
+      "name": "Yanwen"
+    },
+    {
+      "code": "china-ems",
+      "name": "China EMS (ePacket)"
+    },
+    {
+      "code": "dhl",
+      "name": "DHL Express"
+    },
+    {
+      "code": "ups",
+      "name": "UPS"
+    },
+    {
+      "code": "yunexpress",
+      "name": "Yun Express"
+    },
+    {
+      "code": "fedex",
+      "name": "FedEx"
+    },
+    {
+      "code": "china-post",
+      "name": "China Post"
+    },
+    {
+      "code": "wise-express",
+      "name": "Wise Express"
+    }
+  ]
+}
+```
 
 
 ## 类型定义
