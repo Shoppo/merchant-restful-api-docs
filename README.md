@@ -90,7 +90,7 @@ $ curl https://api-sandbox.shoppo.com/api/merchant/health_check --header "mercha
 - `limit (int?)`: 返回的order最大数量，默认20。必须为一个0到200之间的整数。
 - `time_created_from (timestamp?)`: 订单创建时间范围起点，类型为十位的UTC时间戳
 - `time_created_to (timestamp?)`: 订单创建时间范围终点，类型为十位的UTC时间戳
-- `status_in`: 订单的状态，譬如：`PIAD`。如果需要填多个，则按照英文逗号分隔，譬如：`PAID,IN_PROGRESS`。
+- `status_in`: 订单的状态，譬如：`PIAD`。如果需要填多个，则按照英文逗号分隔，譬如：`PAID,IN_PROGRESS`。可选的值为 `ALL`, `PAID`, `IN_PROGRESS`, `DELIVERED`, `CLOSED`
 
 返回参数：TODO
 - `total (int!)`: 总订单数；
