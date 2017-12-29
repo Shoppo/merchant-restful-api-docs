@@ -7,16 +7,19 @@ Merchant API是 `Shoppo` 为商户、ERP的 `API` 对接提供的API，对一下
 - [x] 获取、更新订单信息；
 - [ ] 对接Shoppo物流（TODO）；
 
+## API 请求地址
+  * 正式环境：[`https://api.shoppo.com`](https://api.shoppo.com)，对应的后台地址：[`https://merchant.shoppo.com`](https://merchant.shoppo.com)
+  * sanbox 环境：[`https://api-sandbox.shoppo.com`](https://api-sandbox.shoppo.com)，对应的后台地址：[`https://merchant-dev.shoppo.com`](https://merchant-dev.shoppo.com)
+
 ## 基本设置
 
-在开始之前，请跟联系 `Shoppo` 的对接人员开通 `API` 服务。 `API` 服务开通后，您可以在 [开发者页面](https://merchant.shoppo.com/merchant/developer/profile) 获取到 `商户ID` 以及 `API Key`
-- 如果 `API Key` 没有刷新，请尝试注销重新登录
-- 测试环境中，请使用 `https://merchant-dev.shoppo.com/developer/profile`
+在开始之前，请跟联系 `Shoppo` 的对接人员开通 `API` 服务。 `API` 服务开通后，您可以在 **开发者页面** ([正式环境](https://merchant.shoppo.com/merchant/developer/profile)，[sandbox环境](https://merchant-dev.shoppo.com/developer/profile)) 获取到 `商户ID` 以及 `API Key`
+- **如果 `API Key` 没有刷新，请尝试注销重新登录**
 
 您可以使用下面的命令行指令来测试 `API Key` 的有效性：
 
 ```bash
-$ curl https://api.shoppo.com/api/merchant/health_check --header "merchantid: <商户ID>" --header "apikey: <API Key>"
+$ curl {api key对应环境的请求地址}/api/merchant/health_check/ --header "merchantid: <商户ID>" --header "apikey: <API Key>"
 ```
 
 有效的 `API Key` 将会收到如下 `response`：
@@ -29,13 +32,14 @@ Go <商户名称>! Go Shoppo!
 - 所有的数据均适用 `UTF-8` 编码；
 - 请发送 `HTTPS` 请求，我们不保证对 `HTTP` 协议的支持；
 - 每个请求的 `header` 都必须包括 `merchantid` 以及 `apiKey`；
+- 对于请求的 `body`，如果需要传内容，请以 `json` 格式进行编码传输;
 
 ### 错误信息
 
 所有成功的 `API` 请求都将会返回一个 `statusCode = 200` 的 `response`。错误的请求将会以非 `200` 的代码返回，一般包含一个错误信息。比如：
 
 ```bash
-$ curl https://api-sandbox.shoppo.com/api/merchant/health_check --header "merchantid: <merchant id>" --header "apikey: wrong-key" -i
+$ curl https://api-sandbox.shoppo.com/api/merchant/health_check/ --header "merchantid: <merchant id>" --header "apikey: wrong-key" -i
 HTTP/1.1 403 FORBIDDEN
 Access-Control-Allow-Origin: *
 Content-Type: application/json
@@ -54,8 +58,10 @@ Connection: keep-alive
 在开发测试阶段，您可能不希望一些测试的请求影响到生产数据。此时请要求对接人员提供一个测试用的 `商户ID` 以及 `API Key`，并且将所有的测试请求发送到 `https://api-sandbox.shoppo.com/`。比如
 
 ```bash
-$ curl https://api-sandbox.shoppo.com/api/merchant/health_check --header "merchantid: <商户ID>" --header "apikey: <API Key>"
+$ curl https://api-sandbox.shoppo.com/api/merchant/health_check/ --header "merchantid: <商户ID>" --header "apikey: <API Key>"
 ```
+
+如果您需要一些额外的测试数据，请发邮件到 `Shoppo` 的 `API` 对接邮箱说明您的数据需求。
 
 ## API接口列表
 
@@ -90,7 +96,13 @@ $ curl https://api-sandbox.shoppo.com/api/merchant/health_check --header "mercha
 - `limit (int?)`: 返回的order最大数量，默认20。必须为一个0到200之间的整数。
 - `time_created_from (timestamp?)`: 订单创建时间范围起点，类型为十位的UTC时间戳
 - `time_created_to (timestamp?)`: 订单创建时间范围终点，类型为十位的UTC时间戳
-- `status_in`: 订单的状态，譬如：`PIAD`。如果需要填多个，则按照英文逗号分隔，譬如：`PAID,IN_PROGRESS`。可选的值为 `ALL`, `PAID`, `IN_PROGRESS`, `DELIVERED`, `CLOSED`
+- `status_in`: 订单的状态，譬如：`PIAD`。如果需要填多个，则按照英文逗号分隔，譬如：`PAID,IN_PROGRESS`。
+  - 订单状态筛选说明
+    * `PAID`: 用户已付款等待商户操作。注意，用户付款的订单在 **2小时** 以内用户可以自由取消，请注意判断。
+    * `IN_PROGRESS`: 订单已经部分发货。
+    * `SHIPPED`: 订单内所有商品已发货。
+    * `DELIVERED`: 用户手动点击收货。
+    * `CLOSED`: 订单已关闭。
 
 返回参数：TODO
 - `total (int!)`: 总订单数；
@@ -445,7 +457,7 @@ https://api-sandbox.shoppo.com/api/merchant/order_item/KvL2Lb12jnMTpw/
 }
 ```
 
-#### `/api/merchant/order_items/ship` [POST, PUT]
+#### `/api/merchant/order_items/ship/` [POST, PUT]
 将多个`OrderItem`标记为已发货。
 
 参数：
@@ -492,7 +504,7 @@ https://api-sandbox.shoppo.com/api/merchant/order_items/ship/
 }
 ```
 
-#### `/api/merchant/order_item/<order item ID>/refund` [POST, PUT]
+#### `/api/merchant/order_item/<order item ID>/refund/` [POST, PUT]
 将单个`OrderItem`退款。注意，refund并不会改变`OrderItem`的状态。一个已经退款的`OrderItem`不能被重复退款（除非第一次没有退运费，第二次退运费）。
 
 参数：
