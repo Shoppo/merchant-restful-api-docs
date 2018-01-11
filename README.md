@@ -366,6 +366,69 @@ https://api-sandbox.shoppo.com/api/merchant/product/test-prod-5e5b952c5a5a11e7a1
 }
 ```
 
+#### `/api/merchant/product/<product id>/status/<status: enabled, disabled>` [POST, PUT]
+通过 `Product ID` 来上下架整个商品。
+**注意**，这个接口将会修改整个商品下关联的所有 `SKU` 的上下架状态。
+
+**参数说明**
+`product_id` -> 通过 Product 接口获取到的 `id` 字段
+`status` -> `enabled` 或者 `disabled`，分别代表上架或者下架
+
+**返回结果**：修改后的Product
+
+参考 request:
+```
+https://api-sandbox.shoppo.com/api/merchant/product/4YzNjz4KZOue/status/enabled/
+```
+
+参考 response:
+```json
+{
+  "data": {
+    "brand": "test brand",
+    "category_id": "501010",
+    "chinese_name": "中文名",
+    "cover_image_url": "https://cdn.shoppo.com/images/7c7066ea67bcdae2603ebc10dcc41a1a.JPEG",
+    "cover_video_url": null,
+    "description": "test prod description 5e5b952c5a5a11e7a145f45c89a3e2f9",
+    "extra_image_urls": ["https://cdn.shoppo.com/images/1c7066fa67bcdae2603ebc10dcc41a1a.JPEG"],
+    "features": [],
+    "id": "4YzNjz4KZOue",
+    "identifier": "test-prod-5e5b952c5a5a11e7a145f45c89a3e2f9",
+    "name": "test prod name 5e5b952c5a5a11e7a145f45c89a3e2f9",
+    "rich_detail_sections": "Coming soon",
+    "skus": [
+      {
+        "color": "red",
+        "cover_image_url": "https://cdn.shoppo.com/images/34768a6a185ff5c76780dc99fb3140b8.JPEG",
+        "enabled": true,
+        "height": "8",
+        "hs_code": "1234",
+        "id": "pvmj64QXLDaux",
+        "identifier": "test-sku-5e5d4f485a5a11e7a58df45c89a3e2f9",
+        "inventory": 14,
+        "length": "4",
+        "material": "metal",
+        "msrp": 174.44,
+        "price": 164.44,
+        "product_id": "4YzNjz4KZOue",
+        "product_identifier": "test-prod-5e5b952c5a5a11e7a145f45c89a3e2f9",
+        "shipping_price": 1.0,
+        "shipping_time": "10-30 Days",
+        "size": "S",
+        "upc": "1237513718",
+        "weight": "0.5",
+        "width": "1"
+      }
+    ],
+    "tags": [],
+    "target_user_type": "ALL",
+    "white_background_image_url": null
+  }
+}
+```
+
+
 #### `/api/merchant/sku/<merchant sku identifier>/` [GET]
 通过商户SKU ID来读取单个SKU的信息。
 
@@ -407,6 +470,46 @@ https://api-sandbox.shoppo.com/api/merchant/sku/test-sku-5e5d4f485a5a11e7a58df45
   }
 }
 
+```
+
+#### `/api/merchant/sku/<sku id>/status/<status: enabled, disabled>` [POST, PUT]
+修改单个 `SKU` 的上下架状态。
+参数：
+- `sku id`: 通过 product 或者 sku 接口获取到的 sku 数据的 id 字段
+- `status`: enabled 或者 disabled，分别表示上架和下架状态
+
+返回结果：修改后的 SKU 数据
+参考 request:
+```
+https://api-sandbox.shoppo.com/api/merchant/sku/pvmj64QXLDaux/status/enabled/
+```
+
+参考 response:
+```json
+{
+  "data": {
+    "color": "red",
+    "cover_image_url": "https://cdn.shoppo.com/images/34768a6a185ff5c76780dc99fb3140b8.JPEG",
+    "enabled": true,
+    "height": null,
+    "hs_code": null,
+    "id": "pvmj64QXLDaux",
+    "identifier": "test-sku-5e5d4f485a5a11e7a58df45c89a3e2f9",
+    "inventory": 14,
+    "length": null,
+    "material": null,
+    "msrp": 174.44,
+    "price": 164.44,
+    "product_id": "4YzNjz4KZOue",
+    "product_identifier": "test-prod-5e5b952c5a5a11e7a145f45c89a3e2f9",
+    "shipping_price": 1.0,
+    "shipping_time": "10-30 Days",
+    "size": "S",
+    "upc": "",
+    "weight": null,
+    "width": null
+  }
+}
 ```
 
 ### 修改
