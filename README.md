@@ -472,6 +472,47 @@ https://api-sandbox.shoppo.com/api/merchant/sku/test-sku-5e5d4f485a5a11e7a58df45
 
 ```
 
+#### `/api/merchant/sku/<merchant sku identifier>/` [POST, PUT]
+修改单个 `SKU` 的基本信息。
+参数：
+- `inventory`: 商品库存
+- `price`: 商品价格
+- `msrp`: 商品 `msrp`
+
+返回结果：修改后的 SKU 数据
+参考 request:
+```
+curl -X POST --header "merchantid: <商户ID>" --header "apikey: <API Key> https://api-sandbox.shoppo.com/api/merchant/sku/test-sku-5e5d4f485a5a11e7a58df45c89a3e2f9/ -d '{"inventory": 15}'
+```
+
+参考 response:
+```json
+{
+  "data": {
+    "color": "red",
+    "cover_image_url": "https://cdn.shoppo.com/images/34768a6a185ff5c76780dc99fb3140b8.JPEG",
+    "enabled": true,
+    "height": null,
+    "hs_code": null,
+    "id": "pvmj64QXLDaux",
+    "identifier": "test-sku-5e5d4f485a5a11e7a58df45c89a3e2f9",
+    "inventory": 15,
+    "length": null,
+    "material": null,
+    "msrp": 174.44,
+    "price": 164.44,
+    "product_id": "4YzNjz4KZOue",
+    "product_identifier": "test-prod-5e5b952c5a5a11e7a145f45c89a3e2f9",
+    "shipping_price": 1.0,
+    "shipping_time": "10-30 Days",
+    "size": "S",
+    "upc": "",
+    "weight": null,
+    "width": null
+  }
+}
+```
+
 #### `/api/merchant/sku/<sku id>/status/<status: enabled, disabled>` [POST, PUT]
 修改单个 `SKU` 的上下架状态。
 参数：
