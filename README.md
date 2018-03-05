@@ -96,7 +96,7 @@ $ curl https://api-sandbox.shoppo.com/api/merchant/health_check/ --header "merch
 - `limit (int?)`: 返回的order最大数量，默认20。必须为一个0到200之间的整数。
 - `time_created_from (timestamp?)`: 订单创建时间范围起点，类型为十位的UTC时间戳
 - `time_created_to (timestamp?)`: 订单创建时间范围终点，类型为十位的UTC时间戳
-- `status_in`: 订单的状态，譬如：`PIAD`。如果需要填多个，则按照英文逗号分隔，譬如：`PAID,IN_PROGRESS`。
+- `status_in`: 订单的状态，譬如：`PAID`。如果需要填多个，则按照英文逗号分隔，譬如：`PAID,IN_PROGRESS`。
   - 订单状态筛选说明
     * `PAID`: 用户已付款等待商户操作。注意，用户付款的订单在 **2小时** 以内用户可以自由取消，请注意判断。
     * `IN_PROGRESS`: 订单已经部分发货。
@@ -107,15 +107,15 @@ $ curl https://api-sandbox.shoppo.com/api/merchant/health_check/ --header "merch
 返回参数：TODO
 - `total (int!)`: 总订单数；
 - `bookmark (string!)`: 分页时，下一次请求需要传入的参数；
-- `orders ([Order]!)`: 订单列表，请注意再遇到非法的`Order`时列表中可能包含`null`（见下面的例子）
+- `orders ([Order]!)`: 订单列表，请注意在遇到非法的`Order`时列表中可能包含`null`（见下面的例子）
 
-参考request：
+参考 Request：
 
 ```bash
 https://api-sandbox.shoppo.com/api/merchant/orders/?limit=2&bookmark=fa7GD1JmmdOI1
 ```
 
-参考Response：
+参考 Response：
 ```json
 {
   "data": {
@@ -185,13 +185,13 @@ https://api-sandbox.shoppo.com/api/merchant/orders/?limit=2&bookmark=fa7GD1JmmdO
 
 返回参数：一个`Order`。
 
-参考request：
+参考 Request：
 
 ```bash
 https://api-sandbox.shoppo.com/api/merchant/order/jzyGD1JmmdOI1/
 ```
 
-参考Response：
+参考 Response：
 
 ```json
 {
@@ -242,16 +242,16 @@ https://api-sandbox.shoppo.com/api/merchant/order/jzyGD1JmmdOI1/
 返回参数：TODO
 - `total (int!)`: 总商品数；
 - `bookmark (string!)`: 分页时，下一次请求需要传入的参数；
-- `products ([Product]!)`: 订单列表，请注意再遇到非法的`Product`时列表中可能包含`null`。
+- `products ([Product]!)`: 商品列表，请注意在遇到非法的`Product`时列表中可能包含`null`。
 
-参考request：
+参考 Request：
 
 ```bash
 https://api-sandbox.shoppo.com/api/merchant/products/?limit=1
 ```
 
 
-参考Response：
+参考 Response：
 
 ```json
 {
@@ -312,13 +312,13 @@ https://api-sandbox.shoppo.com/api/merchant/products/?limit=1
 
 返回参数：一个`Product`。
 
-参考request：
+参考 Request：
 
 ```bash
 https://api-sandbox.shoppo.com/api/merchant/product/test-prod-5e5b952c5a5a11e7a145f45c89a3e2f9/
 ```
 
-参考Response：
+参考 Response：
 
 ```json
 {
@@ -376,12 +376,12 @@ https://api-sandbox.shoppo.com/api/merchant/product/test-prod-5e5b952c5a5a11e7a1
 
 **返回结果**：修改后的Product
 
-参考 request:
+参考 Request:
 ```
 https://api-sandbox.shoppo.com/api/merchant/product/4YzNjz4KZOue/status/enabled/
 ```
 
-参考 response:
+参考 Response:
 ```json
 {
   "data": {
@@ -436,13 +436,13 @@ https://api-sandbox.shoppo.com/api/merchant/product/4YzNjz4KZOue/status/enabled/
 
 返回参数：一个`Sku`。
 
-参考request：
+参考 Request：
 
 ```bash
 https://api-sandbox.shoppo.com/api/merchant/sku/test-sku-5e5d4f485a5a11e7a58df45c89a3e2f9/
 ```
 
-参考Response：
+参考 Response：
 
 ```json
 {
@@ -480,12 +480,12 @@ https://api-sandbox.shoppo.com/api/merchant/sku/test-sku-5e5d4f485a5a11e7a58df45
 - `msrp`: 商品 `msrp`
 
 返回结果：修改后的 SKU 数据
-参考 request:
+参考 Request:
 ```
 curl -X POST --header "merchantid: <商户ID>" --header "apikey: <API Key> https://api-sandbox.shoppo.com/api/merchant/sku/test-sku-5e5d4f485a5a11e7a58df45c89a3e2f9/ -d '{"inventory": 15}'
 ```
 
-参考 response:
+参考 Response:
 ```json
 {
   "data": {
@@ -520,12 +520,12 @@ curl -X POST --header "merchantid: <商户ID>" --header "apikey: <API Key> https
 - `status`: enabled 或者 disabled，分别表示上架和下架状态
 
 返回结果：修改后的 SKU 数据
-参考 request:
+参考 Request:
 ```
 https://api-sandbox.shoppo.com/api/merchant/sku/pvmj64QXLDaux/status/enabled/
 ```
 
-参考 response:
+参考 Response:
 ```json
 {
   "data": {
@@ -564,13 +564,13 @@ https://api-sandbox.shoppo.com/api/merchant/sku/pvmj64QXLDaux/status/enabled/
 
 返回参数：一个`OrderItem`。
 
-参考request：
+参考 Request：
 
 ```
 https://api-sandbox.shoppo.com/api/merchant/order_item/KvL2Lb12jnMTpw/
 ```
 
-参考payload:
+参考 Payload:
 
 ```json
 {
@@ -579,7 +579,7 @@ https://api-sandbox.shoppo.com/api/merchant/order_item/KvL2Lb12jnMTpw/
 }
 ```
 
-参考Response:
+参考 Response:
 
 ```json
 {
@@ -609,13 +609,13 @@ https://api-sandbox.shoppo.com/api/merchant/order_item/KvL2Lb12jnMTpw/
 
 返回参数：已发货的`OrderItem`列表。
 
-参考request：
+参考 Request：
 
 ```
 https://api-sandbox.shoppo.com/api/merchant/order_items/ship/
 ```
 
-参考payload:
+参考 Payload:
 
 ```json
 {
@@ -623,7 +623,7 @@ https://api-sandbox.shoppo.com/api/merchant/order_items/ship/
 }
 ```
 
-参考Response:
+参考 Response:
 ```json
 {
   "data": {
@@ -657,13 +657,13 @@ https://api-sandbox.shoppo.com/api/merchant/order_items/ship/
 
 返回参数：退款的order item。
 
-参考request：
+参考 Request：
 
 ```
 https://api-sandbox.shoppo.com/api/merchant/order_item/KvL2Lb12jnMTpw/refund
 ```
 
-参考payload:
+参考 Payload:
 
 ```json
 {
@@ -672,7 +672,7 @@ https://api-sandbox.shoppo.com/api/merchant/order_item/KvL2Lb12jnMTpw/refund
 }
 ```
 
-参考Response:
+参考 Response:
 ```json
 {
   "data": {
@@ -696,12 +696,12 @@ https://api-sandbox.shoppo.com/api/merchant/order_item/KvL2Lb12jnMTpw/refund
 #### `/api/merchant/supported-couriers/` 获取支持的物流方式信息
 获取当前系统中支持的物流方式以及对应的说明。其中，`code` 字段为 `API` 接受的格式，`name` 为对应方式的名称/说明。
 
-参考Request:
+参考 Request:
 ```
 curl -X GET -H 'merchantid:<MerchantID>' -H 'apikey:<ApiKey>' -H 'mimetype:Application/json' 'https://api.shoppo.com/api/merchant/supported-couriers/'
 ```
 
-参考Response:
+参考 Response:
 ```
 {
   "data": [
@@ -863,5 +863,3 @@ curl -X GET -H 'merchantid:<MerchantID>' -H 'apikey:<ApiKey>' -H 'mimetype:Appli
 | weight | String! | 高，纯数字则默认单位磅 |
 | hs_code | String! | 海关编码，用于报关 |
 | material | String! | 材质 |
-
-
