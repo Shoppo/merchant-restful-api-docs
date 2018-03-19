@@ -305,6 +305,92 @@ https://api-sandbox.shoppo.com/api/merchant/products/?limit=1
 }
 ```
 
+#### `/api/merchant/products/` [POST]
+创建商品
+
+|   |Type|Description|Required|
+|---|----|-----------|--------|
+|**name**|`string`|商品名称| :white_check_mark: Yes|
+|**identifier**|`string`|商户商品ID| :white_check_mark: Yes|
+|**chinese_name**|`string`|商品中文名称|No|
+|**cover_image_url**|`string`|商品主图链接, `URL`| :white_check_mark: Yes|
+|**white_background_image_url**|`string`, `URL`|商品白色背景图片链接|No|
+|**extra_image_urls**|`string` `[*-5]`|商品细节图, `URL`|No|
+|**description**|`string`|商品描述| :white_check_mark: Yes|
+|**brand**|`string`|商品品牌|No|
+|**features**|`string` `[1-6]`|产品特性| :white_check_mark: Yes|
+|**tags**|`string` `[]`|商品标签|No|
+|**target_user_type**|`string`|适用性别, `ALL` / `MEN` / `WOMEN`| :white_check_mark: Yes|
+|**skus**|`[Sku]`|Sku列表| :white_check_mark: Yes|
+
+参数：
+
+返回参数：
+- 新创建的商品，请参考类型定义`Product`
+
+参考 Request：
+
+```bash
+curl -X POST -s -H "Content-Type: application/json" -H "apikey: API_KEY" -H "merchantid: MERCHANT_ID" -d '{"identifier": "0.22207682727070244", "name": "product name", "chinese_name": "\u5546\u54c1\u4e2d\u6587\u540d\u79f0", "cover_image_url": "https://cdn.shoppo.com/images/10f615395c677b7fc9a56a75cf0f3bad.JPEG", "white_background_image_url": "https://cdn.shoppo.com/images/e76ffd110fb3031a325899991feb844f.JPEG", "description": "description", "features": ["feature 1", "feature 2"], "brand": "shoppo", "tags": ["beauty", "fashion"], "target_user_type": "MEN", "extra_image_urls": ["https://cdn.shoppo.com/images/10f615395c677b7fc9a56a75cf0f3bad.JPEG", "https://cdn.shoppo.com/images/e76ffd110fb3031a325899991feb844f.JPEG"], "category_id": "5010101", "skus": [{"identifier": "0.9290457919886833", "cover_image_url": "https://cdn.shoppo.com/images/10f615395c677b7fc9a56a75cf0f3bad.JPEG", "price": 1.11, "inventory": 10, "shipping_price": 0.11, "msrp": 2.2, "color": "white", "size": "L", "length": "1", "height": "2.5", "width": "1.1", "weight": "0.1", "material": "plastic", "upc": "xxxxxxx", "hs_code": "aaaaa", "shipping_time": "12-15"}]}' https://api-sandbox.shoppo.com/api/merchant/products/
+```
+
+参考 Response：
+
+```json
+{
+  "data": {
+    "brand": "shoppo",
+    "category_id": "5010101",
+    "chinese_name": "\u5546\u54c1\u4e2d\u6587\u540d\u79f0",
+    "cover_image_url": "https://cdn.shoppo.com/images/2999d5a2775bf6bf773f30382f3718d9.JPEG",
+    "cover_video_url": null,
+    "description": "description",
+    "extra_image_urls": [
+      "https://cdn.shoppo.com/images/2999d5a2775bf6bf773f30382f3718d9.JPEG",
+      "https://cdn.shoppo.com/images/719444693b58750ad7b88a8318d68353.JPEG"
+    ],
+    "features": [
+      "feature 1",
+      "feature 2"
+    ],
+    "id": "Mzjq1jXGNqH2",
+    "identifier": "0.22207682727070244",
+    "name": "product name",
+    "rich_detail_sections": "Coming soon",
+    "skus": [
+      {
+        "color": "white",
+        "cover_image_url": "https://cdn.shoppo.com/images/2999d5a2775bf6bf773f30382f3718d9.JPEG",
+        "enabled": false,
+        "height": "2.5",
+        "hs_code": "aaaaa",
+        "id": "5w3kXrAVlqdHA",
+        "identifier": "0.9290457919886833",
+        "inventory": 10,
+        "length": "1",
+        "material": "plastic",
+        "msrp": 2.2,
+        "price": 1.11,
+        "product_id": "Mzjq1jXGNqH2",
+        "product_identifier": "0.22207682727070244",
+        "shipping_price": 0.11,
+        "shipping_time": "12-15",
+        "size": "L",
+        "upc": "xxxxxxx",
+        "weight": "0.1",
+        "width": "1.1"
+      }
+    ],
+    "tags": [
+      "beauty",
+      "fashion"
+    ],
+    "target_user_type": "MEN",
+    "white_background_image_url": "https://cdn.shoppo.com/images/719444693b58750ad7b88a8318d68353.JPEG"
+  }
+}
+```
+
 #### `/api/merchant/product/<merchant product identifier>/` [GET]
 通过商户商品ID来读取单个商户商品信息。
 
@@ -365,6 +451,114 @@ https://api-sandbox.shoppo.com/api/merchant/product/test-prod-5e5b952c5a5a11e7a1
   }
 }
 ```
+
+
+#### `/api/merchant/product/<merchant product identifier>/` [POST, PUT]
+通过商户商品ID修改商品信息。
+
+参数：
+
+|   |Type|Description|Required|
+|---|----|-----------|--------|
+|**name**|`string`|商品名称|No|
+|**chinese_name**|`string`|商品中文名称|No|
+|**cover_image_url**|`string`|商品主图链接, `URL`|No|
+|**extra_image_urls**|`string` `[*-5]`|商品细节图, `URL`|No|
+|**white_background_image_url**|`string`|商品白色背景图, `URL`|No|
+|**description**|`string`|商品描述|No|
+|**brand**|`string`|商品品牌|No|
+|**features**|`string` `[1-6]`|产品特性|No|
+|**tags**|`string` `[]`|商品标签|No|
+|**target_user_type**|`string`|适用性别, `ALL` / `MEN` / `WOMEN`|No|
+
+返回参数：`Product`。
+
+参考 Request：
+
+```bash
+curl -X POST -s -H "Content-Type: application/json" -H "apikey: API_KEY" -H "merchantid: MERCHANT_ID" -d '{"name": "new name from api"}' https://api-sandbox.shoppo.com/api/merchant/product/0.09917838114011723/
+```
+
+参考 Response：
+
+```json
+
+{
+  "data": {
+    "brand": "shoppo",
+    "category_id": "5010101",
+    "chinese_name": "\u5546\u54c1\u4e2d\u6587\u540d\u79f0",
+    "cover_image_url": "https://cdn.shoppo.com/images/2999d5a2775bf6bf773f30382f3718d9.JPEG",
+    "cover_video_url": null,
+    "description": "description",
+    "extra_image_urls": [
+      "https://cdn.shoppo.com/images/2999d5a2775bf6bf773f30382f3718d9.JPEG",
+      "https://cdn.shoppo.com/images/719444693b58750ad7b88a8318d68353.JPEG"
+    ],
+    "features": [
+      "feature 1",
+      "feature 2"
+    ],
+    "id": "WZ5Le5RxNjU4",
+    "identifier": "0.09917838114011723",
+    "name": "new name from api",
+    "rich_detail_sections": "Coming soon",
+    "skus": [
+      {
+        "color": "white",
+        "cover_image_url": "https://cdn.shoppo.com/images/2999d5a2775bf6bf773f30382f3718d9.JPEG",
+        "enabled": false,
+        "height": "2.5",
+        "hs_code": "aaaaa",
+        "id": "kAmwdzaXLryIX",
+        "identifier": "0.9343675469927027",
+        "inventory": 10,
+        "length": "1",
+        "material": "plastic",
+        "msrp": 2.2,
+        "price": 1.11,
+        "product_id": "WZ5Le5RxNjU4",
+        "product_identifier": "0.09917838114011723",
+        "shipping_price": 0.11,
+        "shipping_time": "12-15",
+        "size": "L",
+        "upc": "xxxxxxx",
+        "weight": "0.1",
+        "width": "1.1"
+      },
+      {
+        "color": "white",
+        "cover_image_url": "https://cdn.shoppo.com/images/2999d5a2775bf6bf773f30382f3718d9.JPEG",
+        "enabled": false,
+        "height": "2.5",
+        "hs_code": "aaaaa",
+        "id": "Ne5AXKByjEpu1",
+        "identifier": "0.09088102182121438",
+        "inventory": 10,
+        "length": "1",
+        "material": "plastic",
+        "msrp": 2.2,
+        "price": 1.11,
+        "product_id": "WZ5Le5RxNjU4",
+        "product_identifier": "0.09917838114011723",
+        "shipping_price": 0.11,
+        "shipping_time": "12-15",
+        "size": "L",
+        "upc": "xxxxxxx",
+        "weight": "0.1",
+        "width": "1.1"
+      }
+    ],
+    "tags": [
+      "beauty",
+      "fashion"
+    ],
+    "target_user_type": "MEN",
+    "white_background_image_url": "https://cdn.shoppo.com/images/719444693b58750ad7b88a8318d68353.JPEG"
+  }
+}
+```
+
 
 #### `/api/merchant/product/<product id>/status/<status: enabled, disabled>` [POST, PUT]
 通过 `Product ID` 来上下架整个商品。
@@ -428,6 +622,65 @@ https://api-sandbox.shoppo.com/api/merchant/product/4YzNjz4KZOue/status/enabled/
 }
 ```
 
+#### `/api/merchant/product/<merchant product identifier>/skus/` [POST]
+商品添加Sku
+
+参数：
+
+|   |Type|Description|Required|
+|---|----|-----------|--------|
+|**identifier**|`string`|Sku商户自定义ID| :white_check_mark: Yes|
+|**cover_image_url**|`string`|Sku主图链接, `URL`| :white_check_mark: Yes|
+|**color**|`string`|颜色| :white_check_mark: Yes|
+|**price**|`number`|单价, `>= 0`| :white_check_mark: Yes|
+|**msrp**|`number`|吊牌价, `>= 0`|No|
+|**inventory**|`integer`|库存数量, `>= 0`| :white_check_mark: Yes|
+|**shipping_price**|`number`|运费, `>= 0`|No|
+|**shipping_time**|`string`|送货时间(天)，格式为<最少天数>-<最多天数>|No|
+|**size**|`string`|尺寸| :white_check_mark: Yes|
+|**weight**|`string`|重量，默认单位为磅|No|
+|**length**|`string`|长，默认单位为inch|No|
+|**width**|`string`|宽，默认单位为inch|No|
+|**height**|`string`|高，默认单位为inch|No|
+|**upc**|`string`|商品统一标示号|No|
+|**hs_code**|`string`|海关编码|No|
+
+返回参数：一个`Sku`。
+
+参考 Request：
+
+```bash
+curl -X POST -s -H "Content-Type: application/json" -H "apikey: API_KEY" -H "merchantid: MERCHANT_ID" -d '{"identifier": "0.20843588399138824", "cover_image_url": "https://cdn.shoppo.com/images/10f615395c677b7fc9a56a75cf0f3bad.JPEG", "price": 1.11, "inventory": 10, "shipping_price": 0.11, "msrp": 2.2, "color": "white", "size": "L", "length": "1", "height": "2.5", "width": "1.1", "weight": "0.1", "material": "plastic", "upc": "xxxxxxx", "hs_code": "aaaaa", "shipping_time": "12-15"}' https://api-sandbox.shoppo.com/api/merchant/product/10927/skus/
+```
+
+参考 Response：
+```json
+{
+  "data": {
+    "color": "white",
+    "cover_image_url": "https://cdn.shoppo.com/images/2999d5a2775bf6bf773f30382f3718d9.JPEG",
+    "enabled": false,
+    "height": "2.5",
+    "hs_code": "aaaaa",
+    "id": "RmpMdQNXEGKfq",
+    "identifier": "0.20843588399138824",
+    "inventory": 10,
+    "length": "1",
+    "material": "plastic",
+    "msrp": 2.2,
+    "price": 1.11,
+    "product_id": "mREDzEAQr6iq",
+    "product_identifier": "10927",
+    "shipping_price": 0.11,
+    "shipping_time": "12-15",
+    "size": "L",
+    "upc": "xxxxxxx",
+    "weight": "0.1",
+    "width": "1.1"
+  }
+}
+```
+
 
 #### `/api/merchant/sku/<merchant sku identifier>/` [GET]
 通过商户SKU ID来读取单个SKU的信息。
@@ -474,10 +727,25 @@ https://api-sandbox.shoppo.com/api/merchant/sku/test-sku-5e5d4f485a5a11e7a58df45
 
 #### `/api/merchant/sku/<merchant sku identifier>/` [POST, PUT]
 修改单个 `SKU` 的基本信息。
+
 参数：
-- `inventory`: 商品库存
-- `price`: 商品价格
-- `msrp`: 商品 `msrp`
+
+|   |Type|Description|Required|
+|---|----|-----------|--------|
+|**cover_image_url**|`string`|Sku主图链接|No|
+|**color**|`string`|颜色|No|
+|**price**|`number`|单价|No|
+|**msrp**|`number`|吊牌价|No|
+|**inventory**|`integer`|库存数量|No|
+|**shipping_price**|`number`|运费|No|
+|**shipping_time**|`string`|送货时间(天)，格式为<最少天数>-<最多天数>|No|
+|**size**|`string`|尺寸|No|
+|**weight**|`string`|重量，默认单位为磅|No|
+|**length**|`string`|长，默认单位为inch|No|
+|**width**|`string`|宽，默认单位为inch|No|
+|**height**|`string`|高，默认单位为inch|No|
+|**upc**|`string`|商品统一标示号|No|
+|**hs_code**|`string`|海关编码|No|
 
 返回结果：修改后的 SKU 数据
 参考 Request:
@@ -860,6 +1128,6 @@ curl -X GET -H 'merchantid:<MerchantID>' -H 'apikey:<ApiKey>' -H 'mimetype:Appli
 | length | String! | 长，纯数字则默认inch |
 | width | String! | 宽，纯数字则默认inch |
 | height | String! | 高，纯数字则默认inch |
-| weight | String! | 高，纯数字则默认单位磅 |
+| weight | String! | 重量，纯数字则默认单位磅 |
 | hs_code | String! | 海关编码，用于报关 |
 | material | String! | 材质 |
