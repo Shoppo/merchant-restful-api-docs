@@ -823,6 +823,75 @@ https://api-sandbox.shoppo.com/api/merchant/sku/pvmj64QXLDaux/status/enabled/
 
 ### 修改
 
+#### `/api/merchant/create-logistics-order/` [POST]
+
+OrderItem自动生成面单号，**多个order item只能属于同一个商户订单**，每次请求会生成一个新的面单号
+
+参数：
+* `courier_code(String)`: 物流方式代码, `Enum`
+  * `PEKING_EMS`, 物流方式名称 `SHOPPO - Post`，支持美国地区订单
+  * `OFFLINE_EMS`，物流方式名称 `SHOPPO - E邮宝`，支持美国地区订单
+  * `SHANGHAI_EMS`，物流方式名称 `SHOPPO - E邮包`，支持印度地区订单
+* `order_item_ids([String])`: 要生成面单的order items id列表，这些order item会使用同一个包裹发货；如果需要用多个包裹发货，需要拆成多次请求，获取多个面单号。
+
+返回参数：order item列表
+
+参考 Request：
+
+```
+https://api-sandbox.shoppo.com/api/merchant/create-logistics-order/
+```
+
+参考 Payload:
+
+```json
+{
+	"courier_code": "",
+	"order_item_ids": ["mEDWDgOWK8gc6g", "pRwWwg8WOeet6d"]
+}
+```
+
+参考 Response:
+
+```json
+{
+  "data": {
+    "order_items": [
+      {
+        "id": "mEDWDgOWK8gc6g",
+        "is_refunded": false,
+        "product_snapshot_identifier": "test-prod-5e5dc7525a5a11e7beb5f45c89a3e2f9",
+        "product_snapshot_name": "test prod name 5e5dc7525a5a11e7beb5f45c89a3e2f9",
+        "quantity": 1,
+        "refund_reason_type": null,
+        "shipping_provider": "wise-express",
+        "shipping_refunded": false,
+        "sku_snapshot_identifier": "test-sku-5e5de7ac5a5a11e79e6bf45c89a3e2f9",
+        "sku_snapshot_price": 111.62,
+        "sku_snapshot_shipping_price": 2.0,
+        "status": "IN_FULFILLMENT",
+        "tracking_number": "UG856257945CN"
+      },
+      {
+        "id": "pRwWwg8WOeet6d",
+        "is_refunded": false,
+        "product_snapshot_identifier": "test-prod-124c234c5a5d11e793a3f45c89a3e2f9",
+        "product_snapshot_name": "test prod name 124c234c5a5d11e793a3f45c89a3e2f9",
+        "quantity": 1,
+        "refund_reason_type": null,
+        "shipping_provider": "wise-express",
+        "shipping_refunded": false,
+        "sku_snapshot_identifier": "test-sku-124c72d25a5d11e7850ef45c89a3e2f9",
+        "sku_snapshot_price": 158.18,
+        "sku_snapshot_shipping_price": 5.5,
+        "status": "IN_FULFILLMENT",
+        "tracking_number": "UG856257945CN"
+      }
+    ]
+  }
+}
+```
+
 #### `/api/merchant/order_item/<order item ID>/` [POST, PUT]
 修改单个商户订单信息。**注意，仅修改提供的参数**。
 
