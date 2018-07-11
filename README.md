@@ -823,7 +823,9 @@ https://api-sandbox.shoppo.com/api/merchant/sku/pvmj64QXLDaux/status/enabled/
 
 ### 修改
 
-#### `/api/merchant/create-logistics-order/` [POST]
+<a name="create-logistics-order" />
+
+#### `/api/merchant/create-logistics-order/` [POST, PUT]
 
 OrderItem自动生成面单号，**多个order item只能属于同一个商户订单**，每次请求会生成一个新的面单号
 
@@ -832,7 +834,7 @@ OrderItem自动生成面单号，**多个order item只能属于同一个商户�
   * `PEKING_EMS`, 物流方式名称 `SHOPPO - Post`，支持美国地区订单
   * `OFFLINE_EMS`，物流方式名称 `SHOPPO - E邮宝`，支持美国地区订单
   * `SHANGHAI_EMS`，物流方式名称 `SHOPPO - E邮包`，支持印度地区订单
-* `order_item_ids([String])`: 要生成面单的order items id列表，这些order item会使用同一个包裹发货；如果需要用多个包裹发货，需要拆成多次请求，获取多个面单号。
+* `order_item_ids([String])`: 要生成面单号的order items id列表，这些order item会使用同一个包裹发货；如果需要用多个包裹发货，需要拆成多次请求，获取多个面单号。
 
 返回参数：order item列表
 
@@ -888,6 +890,41 @@ https://api-sandbox.shoppo.com/api/merchant/create-logistics-order/
         "tracking_number": "UG856257945CN"
       }
     ]
+  }
+}
+```
+
+<a name="download-logistics-stamp-pdf" />
+
+#### `/api/merchant/download-logistics-stamp-pdf/` [POST]
+
+下载多个OrderItem的物流面单，会返回一个PDF链接，下载PDF然后打印面单；一次最多能提交100个order items。
+
+参数：
+* `order_item_ids([String])`: 要打印面单的order items id列表。
+
+返回参数：`download_url`，物流面单PDF链接
+
+参考 Request：
+
+```
+https://api-sandbox.shoppo.com/api/merchant/downlaod-logistics-stamp-pdf/
+```
+
+参考 Payload:
+
+```json
+{
+	"order_item_ids": ["mEDWDgOWK8gc6g", "pRwWwg8WOeet6d"]
+}
+```
+
+参考 Response:
+
+```json
+{
+  "data": {
+    "download_url": "http://www.shwise.cn/apitopdf.asp?oids=98F97470-AB9A-4244-91F7-FD04E9786973101"
   }
 }
 ```
