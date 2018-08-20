@@ -877,6 +877,7 @@ OrderItem 自动生成面单号，**多个 order item 只能属于同一个商�
   - `PEKING_EMS`, 物流方式名称 `SHOPPO - Post`，支持美国地区订单
   - `OFFLINE_EMS`，物流方式名称 `SHOPPO - E邮宝`，支持美国地区订单
   - `SHANGHAI_EMS`，物流方式名称 `SHOPPO - 印度（小包）`，用于印度地区订单
+- `otype(Boolean)`: 是否是挂号物流，默认值是false
 - `order_item_ids([String])`: 要生成面单号的 order items id 列表，这些 order item 会使用同一个包裹发货；如果需要用多个包裹发货，需要拆成多次请求，获取多个面单号。
 
 返回参数：order item 列表
@@ -892,6 +893,7 @@ https://api-sandbox.shoppo.com/api/merchant/create-logistics-order/
 ```json
 {
   "courier_code": "",
+  "otype": false,
   "order_item_ids": ["mEDWDgOWK8gc6g", "pRwWwg8WOeet6d"]
 }
 ```
