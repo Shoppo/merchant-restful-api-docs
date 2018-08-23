@@ -1,11 +1,11 @@
 # Shoppo Merchant API
 
-Merchant API 是 `Shoppo` 为商户、ERP 的 `API` 对接提供的 API，对一下功能提供支持：
+Merchant API 是 `Shoppo` 为商户、ERP 的 `API` 对接提供的 API，对以下功能提供支持：
 
 - [x] 获取、更新（TODO）商户信息；
-- [x] 获取、更新（TODO）商品信息；
+- [x] 获取、更新商品信息；
 - [x] 获取、更新订单信息；
-- [ ] 对接 Shoppo 物流（TODO）；
+- [x] 对接 Shoppo 物流；
 
 ## API 请求地址
 
