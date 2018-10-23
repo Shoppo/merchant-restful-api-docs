@@ -135,6 +135,7 @@ https://api-sandbox.shoppo.com/api/merchant/orders/?limit=2&bookmark=fa7GD1JmmdO
       {
         "buyer_id": "k7okizN7",
         "buyer_order_number": "26978695384001255400",
+        "country_code": "US",
         "id": "jzyGD1JmmdOI1",
         "status": "IN_PROGRESS",
         "order_items": [
@@ -213,6 +214,7 @@ https://api-sandbox.shoppo.com/api/merchant/order/jzyGD1JmmdOI1/
   "data": {
     "buyer_id": "0Vw2T5j7",
     "buyer_order_number": "23904323511825880199",
+    "country_code": "US",
     "id": "pkyrw2qmmlXfn",
     "order_items": [
       {
@@ -1214,6 +1216,7 @@ curl -X GET -H 'merchantid:<MerchantID>' -H 'apikey:<ApiKey>' -H 'mimetype:Appli
 | buyer_id           | String!           | 买家 ID                                  |
 | buyer_order_number | String!           | 买家订单号（显示给买家的一个数字订单号） |
 | order_items        | List[OrderItem!]! | 订单商品列表                             |
+| country_code       | String!           | 订单来源国家码                        |
 
 ### OrderItem
 
