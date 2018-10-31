@@ -960,7 +960,7 @@ https://api-sandbox.shoppo.com/api/merchant/create-logistics-order/
 参考 Request：
 
 ```
-https://api-sandbox.shoppo.com/api/merchant/downlaod-logistics-stamp-pdf/
+https://api-sandbox.shoppo.com/api/merchant/download-logistics-stamp-pdf/
 ```
 
 参考 Payload:
