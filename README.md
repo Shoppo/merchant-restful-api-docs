@@ -322,7 +322,9 @@ https://api-sandbox.shoppo.com/api/merchant/products/?limit=1
         ],
         "tags": [],
         "target_user_type": "ALL",
-        "white_background_image_url": null
+        "white_background_image_url": null,
+        "has_battery": false,
+        "has_liquid": false
       }
     ],
     "total": 347
@@ -347,6 +349,8 @@ https://api-sandbox.shoppo.com/api/merchant/products/?limit=1
 | **features**                   | `string` `[1-6]` | 产品特性                          | :white_check_mark: Yes |
 | **tags**                       | `string` `[]`    | 商品标签                          | No                     |
 | **target_user_type**           | `string`         | 适用性别, `ALL` / `MEN` / `WOMEN` | :white_check_mark: Yes |
+| **has_battery**                | `boolean`        | 是否带电池，默认false               | No                     |
+| **has_liquid**                 | `boolean`        | 是否带液体，默认false               | No                     |
 | **skus**                       | `[Sku]`          | Sku 列表                          | :white_check_mark: Yes |
 
 参数：
@@ -358,7 +362,7 @@ https://api-sandbox.shoppo.com/api/merchant/products/?limit=1
 参考 Request：
 
 ```bash
-curl -X POST -s -H "Content-Type: application/json" -H "apikey: API_KEY" -H "merchantid: MERCHANT_ID" -d '{"identifier": "0.22207682727070244", "name": "product name", "chinese_name": "\u5546\u54c1\u4e2d\u6587\u540d\u79f0", "cover_image_url": "https://cdn.shoppo.com/images/10f615395c677b7fc9a56a75cf0f3bad.JPEG", "white_background_image_url": "https://cdn.shoppo.com/images/e76ffd110fb3031a325899991feb844f.JPEG", "description": "description", "features": ["feature 1", "feature 2"], "brand": "shoppo", "tags": ["beauty", "fashion"], "target_user_type": "MEN", "extra_image_urls": ["https://cdn.shoppo.com/images/10f615395c677b7fc9a56a75cf0f3bad.JPEG", "https://cdn.shoppo.com/images/e76ffd110fb3031a325899991feb844f.JPEG"], "category_id": "5010101", "skus": [{"identifier": "0.9290457919886833", "cover_image_url": "https://cdn.shoppo.com/images/10f615395c677b7fc9a56a75cf0f3bad.JPEG", "price": 1.11, "inventory": 10, "shipping_price": 0.11, "msrp": 2.2, "color": "white", "size": "L", "length": "1", "height": "2.5", "width": "1.1", "weight": "0.1", "material": "plastic", "upc": "xxxxxxx", "hs_code": "aaaaa", "shipping_time": "12-15"}]}' https://api-sandbox.shoppo.com/api/merchant/products/
+curl -X POST -s -H "Content-Type: application/json" -H "apikey: API_KEY" -H "merchantid: MERCHANT_ID" -d '{"identifier": "0.22207682727070244", "name": "product name", "chinese_name": "\u5546\u54c1\u4e2d\u6587\u540d\u79f0", "cover_image_url": "https://cdn.shoppo.com/images/10f615395c677b7fc9a56a75cf0f3bad.JPEG", "white_background_image_url": "https://cdn.shoppo.com/images/e76ffd110fb3031a325899991feb844f.JPEG", "description": "description", "features": ["feature 1", "feature 2"], "brand": "shoppo", "tags": ["beauty", "fashion"], "target_user_type": "MEN", "extra_image_urls": ["https://cdn.shoppo.com/images/10f615395c677b7fc9a56a75cf0f3bad.JPEG", "https://cdn.shoppo.com/images/e76ffd110fb3031a325899991feb844f.JPEG"], "category_id": "5010101", "has_battery": false, "has_liquid": false, "skus": [{"identifier": "0.9290457919886833", "cover_image_url": "https://cdn.shoppo.com/images/10f615395c677b7fc9a56a75cf0f3bad.JPEG", "price": 1.11, "inventory": 10, "shipping_price": 0.11, "msrp": 2.2, "color": "white", "size": "L", "length": "1", "height": "2.5", "width": "1.1", "weight": "0.1", "material": "plastic", "upc": "xxxxxxx", "hs_code": "aaaaa", "shipping_time": "12-15"}]}' https://api-sandbox.shoppo.com/api/merchant/products/
 ```
 
 参考 Response：
@@ -410,7 +414,9 @@ curl -X POST -s -H "Content-Type: application/json" -H "apikey: API_KEY" -H "mer
     "tags": ["beauty", "fashion"],
     "target_user_type": "MEN",
     "white_background_image_url":
-      "https://cdn.shoppo.com/images/719444693b58750ad7b88a8318d68353.JPEG"
+      "https://cdn.shoppo.com/images/719444693b58750ad7b88a8318d68353.JPEG",
+    "has_battery": false,
+    "has_liquid": false
   }
 }
 ```
@@ -476,7 +482,9 @@ https://api-sandbox.shoppo.com/api/merchant/product/test-prod-5e5b952c5a5a11e7a1
     ],
     "tags": [],
     "target_user_type": "ALL",
-    "white_background_image_url": null
+    "white_background_image_url": null,
+    "has_battery": false,
+    "has_liquid": false
   }
 }
 ```
@@ -499,6 +507,8 @@ https://api-sandbox.shoppo.com/api/merchant/product/test-prod-5e5b952c5a5a11e7a1
 | **features**                   | `string` `[1-6]` | 产品特性                          | No       |
 | **tags**                       | `string` `[]`    | 商品标签                          | No       |
 | **target_user_type**           | `string`         | 适用性别, `ALL` / `MEN` / `WOMEN` | No       |
+| **has_battery**                | `boolean`        | 是否带电池，默认false               | No      |
+| **has_liquid**                 | `boolean`        | 是否带液体，默认false               | No      |
 
 返回参数：`Product`。
 
@@ -580,7 +590,9 @@ curl -X POST -s -H "Content-Type: application/json" -H "apikey: API_KEY" -H "mer
     "tags": ["beauty", "fashion"],
     "target_user_type": "MEN",
     "white_background_image_url":
-      "https://cdn.shoppo.com/images/719444693b58750ad7b88a8318d68353.JPEG"
+      "https://cdn.shoppo.com/images/719444693b58750ad7b88a8318d68353.JPEG",
+    "has_battery": false,
+    "has_liquid": false
   }
 }
 ```
@@ -649,7 +661,9 @@ https://api-sandbox.shoppo.com/api/merchant/product/4YzNjz4KZOue/status/enabled/
     ],
     "tags": [],
     "target_user_type": "ALL",
-    "white_background_image_url": null
+    "white_background_image_url": null,
+    "has_battery": false,
+    "has_liquid": false
   }
 }
 ```
