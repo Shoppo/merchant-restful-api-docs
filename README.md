@@ -154,7 +154,8 @@ https://api-sandbox.shoppo.com/api/merchant/orders/?limit=2&bookmark=fa7GD1JmmdO
             "sku_snapshot_price": 171.31,
             "sku_snapshot_shipping_price": 5.5,
             "status": "PAID",
-            "tracking_number": null
+            "tracking_number": null,
+            "wise_courier_code": null
           },
           {
             "id": "6qvyvJWyx1VS5l",
