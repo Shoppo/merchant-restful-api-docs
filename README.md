@@ -96,7 +96,7 @@ $ curl https://api-sandbox.shoppo.com/api/merchant/health_check/ --header "merch
 
 #### `/api/merchant/orders/` [GET]
 
-读取当前商户订单。
+读取当前商户订单。**对于部分部分返回的order_items已经包含tracking_number，对这部分order_item不需要创建面单号**
 
 参数：
 
@@ -171,7 +171,8 @@ https://api-sandbox.shoppo.com/api/merchant/orders/?limit=2&bookmark=fa7GD1JmmdO
             "sku_snapshot_price": 107.37,
             "sku_snapshot_shipping_price": 1.0,
             "status": "PAID",
-            "tracking_number": null
+            "tracking_number": null,
+            "wise_courier_code": null
           }
         ],
         "order_time": "Mon, 10 Jul 2017 08:11:39 GMT",
@@ -232,7 +233,8 @@ https://api-sandbox.shoppo.com/api/merchant/order/jzyGD1JmmdOI1/
         "sku_snapshot_price": 176.4,
         "sku_snapshot_shipping_price": 1.0,
         "status": "IN_FULFILLMENT",
-        "tracking_number": null
+        "tracking_number": null,
+        "wise_courier_code": null
       }
     ],
     "order_time": "Fri, 27 Oct 2017 05:43:20 GMT",
@@ -885,7 +887,7 @@ https://api-sandbox.shoppo.com/api/merchant/sku/pvmj64QXLDaux/status/enabled/
 
 #### `/api/merchant/create-logistics-order/` [POST, PUT]
 
-OrderItem 自动生成面单号，**多个 order item 只能属于同一个商户订单**，每次请求会生成一个新的面单号
+OrderItem 自动生成面单号，**多个 order item 只能属于同一个商户订单**，每次请求会生成一个新的面单号，对于部分来自印度的订单，已经指定了物流渠道，不需要调用该接口，得到面单号；如果调用，会提示错误。
 
 参数：
 
@@ -943,7 +945,8 @@ https://api-sandbox.shoppo.com/api/merchant/create-logistics-order/
         "sku_snapshot_price": 111.62,
         "sku_snapshot_shipping_price": 2.0,
         "status": "IN_FULFILLMENT",
-        "tracking_number": "UG856257945CN"
+        "tracking_number": "UG856257945CN",
+        "wise_courier_code": "1"
       },
       {
         "id": "pRwWwg8WOeet6d",
@@ -960,7 +963,8 @@ https://api-sandbox.shoppo.com/api/merchant/create-logistics-order/
         "sku_snapshot_price": 158.18,
         "sku_snapshot_shipping_price": 5.5,
         "status": "IN_FULFILLMENT",
-        "tracking_number": "UG856257945CN"
+        "tracking_number": "UG856257945CN",
+        "wise_courier_code": "9901"
       }
     ]
   }
@@ -1047,7 +1051,8 @@ https://api-sandbox.shoppo.com/api/merchant/order_item/KvL2Lb12jnMTpw/
     "sku_snapshot_price": 176.4,
     "sku_snapshot_shipping_price": 1.0,
     "status": "IN_FULFILLMENT",
-    "tracking_number": "31837953231"
+    "tracking_number": "31837953231",
+    "wise_courier_code": "1"
   }
 }
 ```
@@ -1097,7 +1102,8 @@ https://api-sandbox.shoppo.com/api/merchant/order_items/ship/
         "sku_snapshot_price": 176.4,
         "sku_snapshot_shipping_price": 1.0,
         "status": "IN_FULFILLMENT",
-        "tracking_number": "31837953231"
+        "tracking_number": "31837953231",
+        "wise_courier_code": "1"
       }
     ]
   }
@@ -1147,7 +1153,8 @@ https://api-sandbox.shoppo.com/api/merchant/order_item/KvL2Lb12jnMTpw/refund
     "sku_snapshot_price": 176.4,
     "sku_snapshot_shipping_price": 1.0,
     "status": "IN_FULFILLMENT",
-    "tracking_number": "31837953231"
+    "tracking_number": "31837953231",
+    "wise_courier_code": "1"
   }
 }
 ```
