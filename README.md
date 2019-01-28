@@ -96,7 +96,9 @@ $ curl https://api-sandbox.shoppo.com/api/merchant/health_check/ --header "merch
 
 #### `/api/merchant/orders/` [GET]
 
-读取当前商户订单。**对于部分部分返回的order_items已经包含tracking_number，对这部分order_item不需要创建面单号**
+读取当前商户订单。**对于返回的order_items下列几种情况不能创建物流订单，当调用创建物流订单的API时候会报错**
+- <font color="red">order_item的tracking_number不为空</font>
+- <font color="red">order_item的status是CANCELLED, SHIPPED的情况下</font>
 
 参数：
 
@@ -888,7 +890,7 @@ https://api-sandbox.shoppo.com/api/merchant/sku/pvmj64QXLDaux/status/enabled/
 
 #### `/api/merchant/create-logistics-order/` [POST, PUT]
 
-OrderItem 自动生成面单号，**多个 order item 只能属于同一个商户订单**，每次请求会生成一个新的面单号，对于部分来自印度的订单，已经指定了物流渠道，不需要调用该接口，得到面单号；如果调用，会提示错误。
+OrderItem 自动生成面单号，**多个 order item 只能属于同一个商户订单**，每次请求会生成一个新的面单号，对于部分来自印度的订单，已经指定了物流渠道，不需要调用该接口，得到面单号；如果调用，会提示错误; 如果 order item的状态是CANCELLED，SHIPPED状态下，如果调用，也会提示错误，遇到这种 order item请过滤或者跳过处理。
 
 参数：
 
