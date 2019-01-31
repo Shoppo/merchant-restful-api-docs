@@ -899,7 +899,7 @@ OrderItem 自动生成面单号，**多个 order item 只能属于同一个商�
   - `OFFLINE_EMS`，物流方式名称 `SHOPPO - E邮宝`，支持美国地区订单
   - `SHANGHAI_EMS`，物流方式名称 `SHOPPO - 印度`，用于印度地区订单
   - `SHANGHAI_EMS`，物流方式名称 `SHOPPO - 马来西亚`，用于马来西亚地区订单
-  - `SHOPPO_EXPRESS`, 物流方式名称 `SHOPPO - 国内中转`，用于肯尼亚地区，部分印度地区的订单
+  - `SHOPPO_EXPRESS`, 物流方式名称 `SHOPPO - 国内中转`，用于肯尼亚地区，孟加拉，部分印度地区的订单
 - `registered(Boolean)`: 是否是挂号物流，默认值是false
 - `order_item_ids([String])`: 要生成面单号的 order items id 列表，这些 order item 会使用同一个包裹发货；如果需要用多个包裹发货，需要拆成多次请求，获取多个面单号。
 - `order_item_to_chinese_names([Object])`: **可选的** `order_item_id` 到 `中文报关名称` 的映射。系统会优先使用这里填写的中文名称作为 `中文报关名称` ，如果这里没有填则使用 `order_item` 对应商品的 `中文名称` 。
