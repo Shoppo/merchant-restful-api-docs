@@ -138,6 +138,7 @@ https://api-sandbox.shoppo.com/api/merchant/orders/?limit=2&bookmark=fa7GD1JmmdO
         "buyer_id": "k7okizN7",
         "buyer_order_number": "26978695384001255400",
         "country_code": "US",
+        "courier_code": "IN19A04",
         "id": "jzyGD1JmmdOI1",
         "status": "IN_PROGRESS",
         "order_items": [
