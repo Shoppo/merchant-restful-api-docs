@@ -113,6 +113,26 @@ $ curl https://api-sandbox.shoppo.com/api/merchant/health_check/ --header "merch
     - `SHIPPED`: 订单内所有商品已发货。
     - `DELIVERED`: 用户手动点击收货。
     - `CLOSED`: 订单已关闭。
+- `country_courier_code`: 国家渠道号， 不同渠道号会有不同的物流操作以及相关政
+  - 可能的值
+    - `IN19A04`
+    - `IN23A15`
+    - `IN06A12`
+    - `IN13A01`
+    - `BD16A05`
+    - `MY14A15`
+    - `MY01A12`
+    - `KE11A09`
+    - `SG02A06`
+    - `SG24A05`
+    - `TH20A01`
+    - `PK03A12`
+    - `AE01A23`
+    - `RU19A08`
+    - `RU15A26`
+    - `US19A08`
+    - `NG03A18`
+
 
 返回参数：TODO
 
@@ -138,7 +158,7 @@ https://api-sandbox.shoppo.com/api/merchant/orders/?limit=2&bookmark=fa7GD1JmmdO
         "buyer_id": "k7okizN7",
         "buyer_order_number": "26978695384001255400",
         "country_code": "US",
-        "courier_code": "IN19A04",
+        "country_courier_code": "IN19A04",
         "id": "jzyGD1JmmdOI1",
         "status": "IN_PROGRESS",
         "order_items": [
@@ -158,7 +178,8 @@ https://api-sandbox.shoppo.com/api/merchant/orders/?limit=2&bookmark=fa7GD1JmmdO
             "sku_snapshot_shipping_price": 5.5,
             "status": "PAID",
             "tracking_number": null,
-            "wise_courier_code": null
+            "wise_courier_code": null,
+            "country_courier_code": "IN19A04"
           },
           {
             "id": "6qvyvJWyx1VS5l",
@@ -176,7 +197,8 @@ https://api-sandbox.shoppo.com/api/merchant/orders/?limit=2&bookmark=fa7GD1JmmdO
             "sku_snapshot_shipping_price": 1.0,
             "status": "PAID",
             "tracking_number": null,
-            "wise_courier_code": null
+            "wise_courier_code": null,
+            "country_courier_code": "IN19A04"
           }
         ],
         "order_time": "Mon, 10 Jul 2017 08:11:39 GMT",
@@ -220,6 +242,7 @@ https://api-sandbox.shoppo.com/api/merchant/order/jzyGD1JmmdOI1/
     "buyer_id": "0Vw2T5j7",
     "buyer_order_number": "23904323511825880199",
     "country_code": "US",
+    "country_courier_code": "IN19A04",
     "id": "pkyrw2qmmlXfn",
     "order_items": [
       {
@@ -238,7 +261,8 @@ https://api-sandbox.shoppo.com/api/merchant/order/jzyGD1JmmdOI1/
         "sku_snapshot_shipping_price": 1.0,
         "status": "IN_FULFILLMENT",
         "tracking_number": null,
-        "wise_courier_code": null
+        "wise_courier_code": null,
+        "country_courier_code": "IN19A04"
       }
     ],
     "order_time": "Fri, 27 Oct 2017 05:43:20 GMT",
