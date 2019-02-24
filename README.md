@@ -113,7 +113,7 @@ $ curl https://api-sandbox.shoppo.com/api/merchant/health_check/ --header "merch
     - `SHIPPED`: 订单内所有商品已发货。
     - `DELIVERED`: 用户手动点击收货。
     - `CLOSED`: 订单已关闭。
-- `country_courier_code`: 国家渠道号， 不同渠道号会有不同的物流操作以及相关政
+- `country_courier_code`: 国家渠道号， 不同渠道号会有不同的物流操作以及相关政策
   - 可能的值
     - `IN19A04`
     - `IN23A15`
