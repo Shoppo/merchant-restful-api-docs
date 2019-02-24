@@ -158,7 +158,7 @@ https://api-sandbox.shoppo.com/api/merchant/orders/?limit=2&bookmark=fa7GD1JmmdO
         "buyer_id": "k7okizN7",
         "buyer_order_number": "26978695384001255400",
         "country_code": "US",
-        "country_courier_code": "IN19A04",
+        "country_courier_code": "US19A08",
         "id": "jzyGD1JmmdOI1",
         "status": "IN_PROGRESS",
         "order_items": [
@@ -179,7 +179,7 @@ https://api-sandbox.shoppo.com/api/merchant/orders/?limit=2&bookmark=fa7GD1JmmdO
             "status": "PAID",
             "tracking_number": null,
             "wise_courier_code": null,
-            "country_courier_code": "IN19A04"
+            "country_courier_code": "US19A08"
           },
           {
             "id": "6qvyvJWyx1VS5l",
@@ -198,7 +198,7 @@ https://api-sandbox.shoppo.com/api/merchant/orders/?limit=2&bookmark=fa7GD1JmmdO
             "status": "PAID",
             "tracking_number": null,
             "wise_courier_code": null,
-            "country_courier_code": "IN19A04"
+            "country_courier_code": "US19A08"
           }
         ],
         "order_time": "Mon, 10 Jul 2017 08:11:39 GMT",
@@ -242,7 +242,7 @@ https://api-sandbox.shoppo.com/api/merchant/order/jzyGD1JmmdOI1/
     "buyer_id": "0Vw2T5j7",
     "buyer_order_number": "23904323511825880199",
     "country_code": "US",
-    "country_courier_code": "IN19A04",
+    "country_courier_code": "US19A08",
     "id": "pkyrw2qmmlXfn",
     "order_items": [
       {
@@ -262,7 +262,7 @@ https://api-sandbox.shoppo.com/api/merchant/order/jzyGD1JmmdOI1/
         "status": "IN_FULFILLMENT",
         "tracking_number": null,
         "wise_courier_code": null,
-        "country_courier_code": "IN19A04"
+        "country_courier_code": "US19A08"
       }
     ],
     "order_time": "Fri, 27 Oct 2017 05:43:20 GMT",
