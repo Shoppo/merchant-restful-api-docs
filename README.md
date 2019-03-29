@@ -911,13 +911,13 @@ https://api-sandbox.shoppo.com/api/merchant/sku/pvmj64QXLDaux/status/enabled/
 
 <a name="channel-courier-config" />
 
-### `/api/merchant/create-logistics-order/` [GET]
+### `/api/merchant/channel-courier-config/` [GET]
 
 
 目前部分渠道 `(channel_code)` 的订单，需要商户先获取单号，而部分不需要。这里提供了一个接口，返回相应的配置。表明哪些渠道需要生成单号，以及对应的物流方式代码有哪些。该接口可以直接调用，不需要接口认证
 
 - <font color="red">channel_code不在返回结果里的订单，不需要获取单号</font>
-- <font color="red">如果某个channel_code对应的物流方式只有一个, 则商户在调用 `create-logistics-order` 的时候不需要传courier_code, 系统会自动填上对应的 `courier_code` , 反之则需要，因为系统不知道应该选哪种物流方式</font>
+- <font color="red">如果某个channel_code对应的物流方式只有一个, 则商户在调用 <b>create-logistics-order</b> 的时候不需要传courier_code, 系统会自动填上对应的 <b>courier_code</b> , 反之则需要，因为系统不知道应该选哪种物流方式</font>
 
 
 参考 Response: 
