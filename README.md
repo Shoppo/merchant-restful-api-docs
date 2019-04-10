@@ -312,6 +312,7 @@ https://api-sandbox.shoppo.com/api/merchant/products/?limit=1
       {
         "brand": "test brand",
         "category_id": "501010",
+        "english_name": "english_name_declare",
         "chinese_name": "中文名",
         "cover_image_url":
           "https://cdn.shoppo.com/images/7c7066ea67bcdae2603ebc10dcc41a1a.JPEG",
@@ -370,7 +371,8 @@ https://api-sandbox.shoppo.com/api/merchant/products/?limit=1
 | ------------------------------ | ---------------- | --------------------------------- | ---------------------- |
 | **name**                       | `string`         | 商品名称                          | :white_check_mark: Yes |
 | **identifier**                 | `string`         | 商户商品 ID                       | :white_check_mark: Yes |
-| **chinese_name**               | `string`         | 商品中文名称                      | No                     |
+| **english_name**               | `string`         | 商品英文报关名                      | :white_check_mark: Yes |
+| **chinese_name**               | `string`         | 商品中文报关名                      | :white_check_mark: Yes |
 | **cover_image_url**            | `string`         | 商品主图链接, `URL`               | :white_check_mark: Yes |
 | **white_background_image_url** | `string`, `URL`  | 商品白色背景图片链接              | No                     |
 | **extra_image_urls**           | `string` `[*-5]` | 商品细节图, `URL`                 | No                     |
@@ -392,7 +394,7 @@ https://api-sandbox.shoppo.com/api/merchant/products/?limit=1
 参考 Request：
 
 ```bash
-curl -X POST -s -H "Content-Type: application/json" -H "apikey: API_KEY" -H "merchantid: MERCHANT_ID" -d '{"identifier": "0.22207682727070244", "name": "product name", "chinese_name": "\u5546\u54c1\u4e2d\u6587\u540d\u79f0", "cover_image_url": "https://cdn.shoppo.com/images/10f615395c677b7fc9a56a75cf0f3bad.JPEG", "white_background_image_url": "https://cdn.shoppo.com/images/e76ffd110fb3031a325899991feb844f.JPEG", "description": "description", "features": ["feature 1", "feature 2"], "brand": "shoppo", "tags": ["beauty", "fashion"], "target_user_type": "MEN", "extra_image_urls": ["https://cdn.shoppo.com/images/10f615395c677b7fc9a56a75cf0f3bad.JPEG", "https://cdn.shoppo.com/images/e76ffd110fb3031a325899991feb844f.JPEG"], "category_id": "5010101", "has_battery": false, "has_liquid": false, "skus": [{"identifier": "0.9290457919886833", "cover_image_url": "https://cdn.shoppo.com/images/10f615395c677b7fc9a56a75cf0f3bad.JPEG", "price": 1.11, "inventory": 10, "shipping_price": 0.11, "msrp": 2.2, "color": "white", "size": "L", "length": "1", "height": "2.5", "width": "1.1", "weight": "0.1", "material": "plastic", "upc": "xxxxxxx", "hs_code": "aaaaa", "shipping_time": "12-15"}]}' https://api-sandbox.shoppo.com/api/merchant/products/
+curl -X POST -s -H "Content-Type: application/json" -H "apikey: API_KEY" -H "merchantid: MERCHANT_ID" -d '{"identifier": "0.22207682727070244", "name": "product name", "english_name": "english_name_declare", "chinese_name": "\u5546\u54c1\u4e2d\u6587\u540d\u79f0", "cover_image_url": "https://cdn.shoppo.com/images/10f615395c677b7fc9a56a75cf0f3bad.JPEG", "white_background_image_url": "https://cdn.shoppo.com/images/e76ffd110fb3031a325899991feb844f.JPEG", "description": "description", "features": ["feature 1", "feature 2"], "brand": "shoppo", "tags": ["beauty", "fashion"], "target_user_type": "MEN", "extra_image_urls": ["https://cdn.shoppo.com/images/10f615395c677b7fc9a56a75cf0f3bad.JPEG", "https://cdn.shoppo.com/images/e76ffd110fb3031a325899991feb844f.JPEG"], "category_id": "5010101", "has_battery": false, "has_liquid": false, "skus": [{"identifier": "0.9290457919886833", "cover_image_url": "https://cdn.shoppo.com/images/10f615395c677b7fc9a56a75cf0f3bad.JPEG", "price": 1.11, "inventory": 10, "shipping_price": 0.11, "msrp": 2.2, "color": "white", "size": "L", "length": "1", "height": "2.5", "width": "1.1", "weight": "0.1", "material": "plastic", "upc": "xxxxxxx", "hs_code": "aaaaa", "shipping_time": "12-15"}]}' https://api-sandbox.shoppo.com/api/merchant/products/
 ```
 
 参考 Response：
@@ -402,6 +404,7 @@ curl -X POST -s -H "Content-Type: application/json" -H "apikey: API_KEY" -H "mer
   "data": {
     "brand": "shoppo",
     "category_id": "5010101",
+    "english_name": "english_name_declare",
     "chinese_name": "\u5546\u54c1\u4e2d\u6587\u540d\u79f0",
     "cover_image_url":
       "https://cdn.shoppo.com/images/2999d5a2775bf6bf773f30382f3718d9.JPEG",
@@ -472,7 +475,8 @@ https://api-sandbox.shoppo.com/api/merchant/product/test-prod-5e5b952c5a5a11e7a1
   "data": {
     "brand": "test brand",
     "category_id": "501010",
-    "chinese_name": "中文名",
+    "english_name": "english_name_declare",
+    "chinese_name": "中文报关名",
     "cover_image_url":
       "https://cdn.shoppo.com/images/7c7066ea67bcdae2603ebc10dcc41a1a.JPEG",
     "cover_video_url": null,
@@ -528,7 +532,8 @@ https://api-sandbox.shoppo.com/api/merchant/product/test-prod-5e5b952c5a5a11e7a1
 |                                | Type             | Description                       | Required |
 | ------------------------------ | ---------------- | --------------------------------- | -------- |
 | **name**                       | `string`         | 商品名称                          | No       |
-| **chinese_name**               | `string`         | 商品中文名称                      | No       |
+| **english_name**               | `string`         | 商品英文报关名                      | No       |
+| **chinese_name**               | `string`         | 商品中文报关名                      | No       |
 | **cover_image_url**            | `string`         | 商品主图链接, `URL`               | No       |
 | **extra_image_urls**           | `string` `[*-5]` | 商品细节图, `URL`                 | No       |
 | **white_background_image_url** | `string`         | 商品白色背景图, `URL`             | No       |
@@ -555,6 +560,7 @@ curl -X POST -s -H "Content-Type: application/json" -H "apikey: API_KEY" -H "mer
   "data": {
     "brand": "shoppo",
     "category_id": "5010101",
+    "english_name": "english_name_declare",
     "chinese_name": "\u5546\u54c1\u4e2d\u6587\u540d\u79f0",
     "cover_image_url":
       "https://cdn.shoppo.com/images/2999d5a2775bf6bf773f30382f3718d9.JPEG",
@@ -651,6 +657,7 @@ https://api-sandbox.shoppo.com/api/merchant/product/4YzNjz4KZOue/status/enabled/
   "data": {
     "brand": "test brand",
     "category_id": "501010",
+    "english_name": "english_name_declare",
     "chinese_name": "中文名",
     "cover_image_url":
       "https://cdn.shoppo.com/images/7c7066ea67bcdae2603ebc10dcc41a1a.JPEG",
@@ -1322,7 +1329,8 @@ curl -X GET -H 'merchantid:<MerchantID>' -H 'apikey:<ApiKey>' -H 'mimetype:Appli
 | cover_video_url            | String         | 商品视频链接                                                |
 | white_background_image_url | String!        | 白色背景图链接                                              |
 | name                       | String!        | 商品名                                                      |
-| chinese_name               | String!        | 商品中文名                                                  |
+| english_name               | String!        | 商品英文报关名                                               |
+| chinese_name               | String!        | 商品中文报关名                                               |
 | description                | String!        | 商品描述                                                    |
 | features                   | List[String!]! | 商品特性。将通过列表的形式显示给用户                        |
 | brand                      | String         | 品牌                                                        |
