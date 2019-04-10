@@ -96,7 +96,7 @@ $ curl https://api-sandbox.shoppo.com/api/merchant/health_check/ --header "merch
 
 #### `/api/merchant/orders/` [GET]
 
-读取当前商户订单。**对于返回的order_items下列几种情况不能创建物流订单，当调用创建物流订单的API时候会报错**
+读取当前商户订单。**对于返回的order_items下列几种情况不能创建物流订单，当调用创建物流订单的API时候会报错**
 - <font color="red">order_item的tracking_number不为空</font>
 - <font color="red">order_item的status是CANCELLED, SHIPPED的情况下</font>
 
@@ -916,6 +916,32 @@ https://api-sandbox.shoppo.com/api/merchant/sku/pvmj64QXLDaux/status/enabled/
 }
 ```
 
+<a name="channel-courier-config" />
+
+### `/api/merchant/channel-courier-config/` [GET]
+
+
+目前部分渠道 `(channel_code)` 的订单，需要商户先获取单号，而部分不需要。这里提供了一个接口，返回相应的配置。表明哪些渠道需要生成单号，以及对应的物流方式代码有哪些。该接口可以直接调用，不需要接口认证
+
+- <font color="red">channel_code不在返回结果里的订单，不需要获取单号</font>
+- <font color="red">如果某个channel_code对应的物流方式只有一个, 则商户在调用 <b>create-logistics-order</b> 的时候不需要传courier_code, 系统会自动填上对应的 <b>courier_code</b> , 反之则需要，因为系统不知道应该选哪种物流方式</font>
+
+
+参考 Response: 
+
+```json
+{
+  "SG02A06": [
+    "EUB_EMS"
+  ], 
+  "US19A08": [
+    "SHANGHAI_EMS"
+  ]
+}
+```
+
+
+
 ### 修改
 
 <a name="create-logistics-order" />
@@ -926,12 +952,13 @@ OrderItem 自动生成面单号，**多个 order item 只能属于同一个商�
 
 参数：
 
-- `courier_code(String)`: 物流方式代码, `Enum`
+- `courier_code(String)`: 物流方式代码, `Enum` 如果某渠道只有一种物流方式，则这个参数不需要传
   - `PEKING_EMS`, 物流方式名称 `SHOPPO - Post`，支持美国地区订单
   - `OFFLINE_EMS`，物流方式名称 `SHOPPO - E邮宝`，支持美国地区订单
   - `SHANGHAI_EMS`，物流方式名称 `SHOPPO - 印度`，用于印度地区订单
   - `SHANGHAI_EMS`，物流方式名称 `SHOPPO - 马来西亚`，用于马来西亚地区订单
   - `SHOPPO_EXPRESS`, 物流方式名称 `SHOPPO - 国内中转`，用于肯尼亚地区，孟加拉，部分印度地区的订单
+  - `EUB_EMS`, 物流方式名称 `SHOPPO - E邮宝2` 用于澳大利亚、巴西、马来西亚、新加坡、印度尼西亚
 - `registered(Boolean)`: 是否是挂号物流，默认值是false
 - `order_item_ids([String])`: 要生成面单号的 order items id 列表，这些 order item 会使用同一个包裹发货；如果需要用多个包裹发货，需要拆成多次请求，获取多个面单号。
 - `order_item_to_chinese_names([Object])`: **必填** `order_item_id` 到 `中文报关名称` 的映射。系统会使用这里填写的中文名称作为 `中文报关名称` ，如果这里没有填写会报错 。
