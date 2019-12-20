@@ -164,7 +164,7 @@ https://api-sandbox.shoppo.com/api/merchant/orders/?limit=2&bookmark=fa7GD1JmmdO
         "order_items": [
           {
             "id": "3V1q1JWqvb2tdW",
-            "is_refunded": false,
+            "is_refunded": true,
             "product_snapshot_identifier":
               "test-prod-ea52ac4c5bd011e79332f45c89a3e2f9",
             "product_snapshot_name": "A dog",
@@ -375,7 +375,7 @@ https://api-sandbox.shoppo.com/api/merchant/products/?limit=1
 | **chinese_name**               | `string`         | 商品中文报关名                      | :white_check_mark: Yes |
 | **cover_image_url**            | `string`         | 商品主图链接, `URL`               | :white_check_mark: Yes |
 | **white_background_image_url** | `string`, `URL`  | 商品白色背景图片链接              | No                     |
-| **extra_image_urls**           | `string` `[*-5]` | 商品细节图, `URL`                 | No                     |
+| **extra_image_urls**           | `string` `[*-10]` | 商品细节图, `URL`                 | No                     |
 | **description**                | `string`         | 商品描述                          | :white_check_mark: Yes |
 | **brand**                      | `string`         | 商品品牌                          | No                     |
 | **features**                   | `string` `[1-6]` | 产品特性                          | :white_check_mark: Yes |
@@ -535,7 +535,7 @@ https://api-sandbox.shoppo.com/api/merchant/product/test-prod-5e5b952c5a5a11e7a1
 | **english_name**               | `string`         | 商品英文报关名                      | No       |
 | **chinese_name**               | `string`         | 商品中文报关名                      | No       |
 | **cover_image_url**            | `string`         | 商品主图链接, `URL`               | No       |
-| **extra_image_urls**           | `string` `[*-5]` | 商品细节图, `URL`                 | No       |
+| **extra_image_urls**           | `string` `[*-10]` | 商品细节图, `URL`                 | No       |
 | **white_background_image_url** | `string`         | 商品白色背景图, `URL`             | No       |
 | **description**                | `string`         | 商品描述                          | No       |
 | **brand**                      | `string`         | 商品品牌                          | No       |
