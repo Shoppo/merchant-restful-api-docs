@@ -10,11 +10,11 @@ Merchant API 是 `Shoppo` 为商户、ERP 的 `API` 对接提供的 API，对以
 ## API 请求地址
 
 - 正式环境：[`https://api.shoppo.com`](https://api.shoppo.com)，对应的后台地址：[`https://merchant.shoppo.com`](https://merchant.shoppo.com)
-- sanbox 环境：[`https://api-sandbox.shoppo.com`](https://api-sandbox.shoppo.com)，对应的后台地址：[`https://merchant-dev.shoppo.com`](https://merchant-dev.shoppo.com)
+- sanbox 环境：[`https://api-sandbox.shoppo.com`](https://api-sandbox.shoppo.com)，对应的后台地址：[`http://merchant-dev.shoppo.com:9090`](http://merchant-dev.shoppo.com:9090)
 
 ## 基本设置
 
-在开始之前，请跟联系 `Shoppo` 的对接人员开通 `API` 服务。 `API` 服务开通后，您可以在 **开发者页面** ([正式环境](https://merchant.shoppo.com/merchant/developer/profile)，[sandbox 环境](https://merchant-dev.shoppo.com/developer/profile)) 获取到 `商户ID` 以及 `API Key`
+在开始之前，请跟联系 `Shoppo` 的对接人员开通 `API` 服务。 `API` 服务开通后，您可以在 **开发者页面** ([正式环境](https://merchant.shoppo.com/merchant/developer/profile)，[sandbox 环境](http://merchant-dev.shoppo.com:9090/developer/profile)) 获取到 `商户ID` 以及 `API Key`
 
 - **如果 `API Key` 没有刷新，请尝试注销重新登录**
 
