@@ -132,6 +132,7 @@ $ curl https://api-sandbox.shoppo.com/api/merchant/health_check/ --header "merch
     - `RU15A26`
     - `US19A08`
     - `NG03A18`
+    - `GE28R01`
 
 
 返回参数：TODO
@@ -1078,6 +1079,7 @@ https://api-sandbox.shoppo.com/api/merchant/download-logistics-stamp-pdf/
 
 - `tracking_number (String)`: 物流面单号。请注意面单号仅能够在该订单还未发货（`status=SHIPPED`）之前修改，发货之后无法通过 API 修改面单号。此外，我们仅支持几家常用的物流提供商，如果您的物流单号无法被识别，请联系 Shoppo 的客服人员解决。
 - `shipping_provider (String)`: 物流商名称（比如 EMS, China Post），注意`shipping_provider`必须和`tracking_number`同时修改。
+- `refund_tracking_number (String)`: 退货单号，仅有德国渠道订单，才需要传此字段 
 
 返回参数：一个`OrderItem`。
 
@@ -1092,6 +1094,7 @@ https://api-sandbox.shoppo.com/api/merchant/order_item/KvL2Lb12jnMTpw/
 ```json
 {
   "tracking_number": "31837953231",
+  "refund_tracking_number": "31837953231",
   "shipping_provider": "China Post"
 }
 ```
